@@ -18,6 +18,8 @@ npm i
 
 Ensure that [MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/) is installed on your system.
 
+Create a `.env` file from `example.env` in the root directory of your project.
+
 ## 2. Running the Project in a Docker Container
 To run the project in a Docker container, follow these steps:
 
@@ -68,3 +70,24 @@ You can send requests locally to `http://localhost:3000/api`:
 
 - GET `/rate`: Retrieve the current exchange rate.
 - POST `/subscribe`: Subscribe with a required parameter `email`. Email validation is implemented using the yup library.
+
+
+### To test the email sending service, you can use [mailtrap.io](https://mailtrap.io/):
+
+##### 1. Sign up: 
+Register for an account on Mailtrap.
+
+##### 2. Start testing:
+On the home page, click the "Start testing" button.
+
+##### 3. Show credentials:
+Click on "Show credentials" to reveal the SMTP settings.
+
+##### 4. Update .env file:
+In your `.env` file, update the following variables with the corresponding SMTP values from Mailtrap:
+
+```bash
+EMAIL=${Host}
+EMAIL_PASSWORD=${Password}
+EMAIL_HOST=${Username}
+```
