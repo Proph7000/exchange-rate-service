@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: exchange-rate
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - MONGO_URI=mongodb://mongo:${MONGO_PORT}/exchange-rate
+      - EMAIL=${EMAIL}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - EMAIL_HOST=${EMAIL_HOST}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db
+    command: mongod --bind_ip ${MONGO_IP} --port ${MONGO_PORT}
+    ports:
+      - "${MONGO_PORT}:${MONGO_PORT}"
